@@ -1,11 +1,6 @@
 from _typeshed import Incomplete
 from typing import Any, List, Union, Optional, TypeVar, overload, Type, cast
-from firebase_admin import App as App
-
-# Define SERVER_TIMESTAMP constant
-SERVER_TIMESTAMP: Incomplete
-
-existing: Incomplete
+from google.cloud.firestore_v1.client import Client
 
 # Define DocumentSnapshot class
 class DocumentSnapshot:
@@ -16,11 +11,8 @@ class DocumentSnapshot:
     @property
     def id(self) -> str: ...
 
-# Define Query class
-class Query:
-    def where(self, field_path: str, op_string: str, value: Any) -> "CollectionReference": ...
-    def stream(self) -> List[Any]: ...
-    def get(self) -> List[DocumentSnapshot]: ...
+# Forward reference for Query
+from google.cloud.firestore_v1.query import Query
 
 # Define CollectionReference class that inherits from Query
 class CollectionReference(Query):
@@ -44,14 +36,8 @@ class DocumentReference:
     @property
     def parent(self) -> CollectionReference: ...
 
-# Define Client class
-class Client:
-    def __init__(self, project: str = "", database: str = "") -> None: ...
-    def collection(self, collection_path: str) -> CollectionReference: ...
-    def transaction(self) -> Any: ...
+# Define SERVER_TIMESTAMP constant
+SERVER_TIMESTAMP: Incomplete
 
-def client(app: App | None = None, database_id: str | None = None) -> Client: ...
-
-class _FirestoreService:
-    def __init__(self, app: App) -> None: ...
-    def get_client(self, database_id: str | None) -> Client: ...
+# Re-export Client
+__all__ = ["Client", "Query", "CollectionReference", "DocumentReference", "DocumentSnapshot", "SERVER_TIMESTAMP"]

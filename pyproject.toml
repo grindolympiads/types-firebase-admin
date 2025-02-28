@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "types-firebase-admin"
-version = "0.1.0"
+version = "0.1.1"
 description = "Type stubs for firebase-admin package"
 readme = "README.md"
 requires-python = ">=3.7"
